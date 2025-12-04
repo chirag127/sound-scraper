@@ -1,0 +1,50 @@
+name: CI
+
+# Controls when the action will run.
+# For g------------------------------------------------------------------------------------
+# For G------------------------------------------------------------------------------------
+# Controls when the action will run.
+# For each change to this file, uncomment and adjust the "on: " block below
+# This workflow will do a basic lint, test, and build
+# (if applicable) of your code.
+#
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/about-continuous-integration
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  #------------------------------------------------------------------------------------
+  # TEST JOB (Python)
+  #------------------------------------------------------------------------------------
+  test:
+    name: "Python Test & Lint"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout Code"
+        uses: "actions/checkout@v4"
+
+      - name: "Setup Python 3.10"
+        uses: "actions/setup-python@v5"
+        with:
+          python-version: "3.10"
+          cache: 'uv'
+
+      - name: "Install Dependencies with uv"
+        run: |
+          uv install --frozen-lockfile
+          uv pip install --frozen-lockfile --editable .
+
+      - name: "Run Ruff (Lint & Format Check)"
+        run: |
+          uv ruff check . --diff --exit-non-zero-same-name
+          uv ruff format . --check
+
+      - name: "Run Pytest"
+        run: |
+          uv pip install pytest
+          pytest tests/integration
