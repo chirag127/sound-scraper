@@ -1,0 +1,135 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – SoundGasm</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome for icons (optional) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- Glassmorphism custom utilities -->
+    <style>
+        @layer utilities {
+            .glass {
+                @apply bg-white/10 backdrop-blur-lg rounded-xl border border-white/20;
+            }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-gray-100 font-sans">
+
+    <!-- Header -->
+    <header class="py-6">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <h1 class="text-3xl font-bold tracking-wider">SoundGasm</h1>
+            <nav class="space-x-6">
+                <a href="index.html" class="hover:text-indigo-300 transition">Home</a>
+                <a href="about.html" class="hover:text-indigo-300 transition">About</a>
+                <a href="contact.html" class="text-indigo-300 font-semibold">Contact</a>
+                <a href="docs.html" class="hover:text-indigo-300 transition">Docs</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex flex-col items-center py-12 px-4">
+        <section class="w-full max-w-2xl glass p-8 shadow-lg">
+            <h2 class="text-2xl font-semibold mb-6 text-center">Get in Touch</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Email Card -->
+                <div class="flex flex-col items-center text-center p-4">
+                    <i class="fas fa-envelope text-4xl text-indigo-300 mb-3"></i>
+                    <p class="text-lg font-medium">Email</p>
+                    <a href="mailto:chiragsinghal127@gmail.com"
+                        class="mt-1 text-indigo-200 hover:underline transition">
+                        chiragsinghal127@gmail.com
+                    </a>
+                </div>
+
+                <!-- GitHub Card -->
+                <div class="flex flex-col items-center text-center p-4">
+                    <i class="fab fa-github text-4xl text-indigo-300 mb-3"></i>
+                    <p class="text-lg font-medium">GitHub</p>
+                    <a href="https://github.com/chirag127"
+                        target="_blank"
+                        class="mt-1 text-indigo-200 hover:underline transition">
+                        github.com/chirag127
+                    </a>
+                </div>
+
+                <!-- LinkedIn Card -->
+                <div class="flex flex-col items-center text-center p-4">
+                    <i class="fab fa-linkedin text-4xl text-indigo-300 mb-3"></i>
+                    <p class="text-lg font-medium">LinkedIn</p>
+                    <a href="https://linkedin.com/in/chirag-singhal1"
+                        target="_blank"
+                        class="mt-1 text-indigo-200 hover:underline transition">
+                        linkedin.com/in/chirag-singhal1
+                    </a>
+                </div>
+
+                <!-- Buy Me a Coffee Card -->
+                <div class="flex flex-col items-center text-center p-4">
+                    <i class="fas fa-coffee text-4xl text-indigo-300 mb-3"></i>
+                    <p class="text-lg font-medium">Support Me</p>
+                    <a href="https://buymeacoffee.com/WhyIsWhen"
+                        target="_blank"
+                        class="mt-1 text-indigo-200 hover:underline transition">
+                        buymeacoffee.com/WhyIsWhen
+                    </a>
+                </div>
+            </div>
+
+            <!-- Optional Contact Form -->
+            <form class="mt-8 space-y-4" action="https://formspree.io/f/your-form-id" method="POST">
+                <div>
+                    <label for="name" class="block text-sm font-medium mb-1">Your Name</label>
+                    <input type="text" id="name" name="name" required
+                        class="w-full px-3 py-2 bg-white/10 rounded-md border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-300 transition" />
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-1">Your Email</label>
+                    <input type="email" id="email" name="_replyto" required
+                        class="w-full px-3 py-2 bg-white/10 rounded-md border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-300 transition" />
+                </div>
+                <div>
+                    <label for="message" class="block text-sm font-medium mb-1">Message</label>
+                    <textarea id="message" name="message" rows="4" required
+                        class="w-full px-3 py-2 bg-white/10 rounded-md border border-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-300 transition"></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full py-2 bg-indigo-600 hover:bg-indigo-500 rounded-md font-semibold transition">
+                    Send Message
+                </button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-6 text-center text-sm text-gray-400 bg-black/30 backdrop-blur-md">
+        © 2026 Chirag Singhal | Designed by Chirag Singhal
+    </footer>
+
+</body>
+
+</html>
+```
+
+**Explanation of key elements**
+
+- **Tailwind CDN** provides all utility classes; no build step required.  
+- A custom `glass` utility creates the glass‑morphism card (`bg-white/10 backdrop-blur-lg`).  
+- Header navigation highlights the current page.  
+- Main section displays contact details with recognizable icons (Font Awesome).  
+- An optional contact form (wired to Formspree – replace `your-form-id` with a real ID) lets visitors send messages directly.  
+- Footer contains the mandatory copyright line.  
+
+Save this content as `docs/contact.html`. The page will render a modern, responsive, glass‑styled contact page for the SoundGasm project.
