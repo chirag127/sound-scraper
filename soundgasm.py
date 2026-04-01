@@ -5,7 +5,6 @@ import shutil
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-
 session = None
 
 
@@ -41,7 +40,7 @@ def extract_audio_file_url_from_soundgasm_audio_page_url(audio_page_url):
         if request.status_code != 200:
             return None
         link_content = BeautifulSoup(request.content, "html.parser")
-        for script in link_content.find_all('script'):
+        for script in link_content.find_all("script"):
             if script.string:
                 if contains_soundgasm_audio_file_url(script.string):
                     return extract_soundgasm_audio_file_url(script.string)
@@ -56,7 +55,7 @@ def extract_audio_from_url(audio_url, current_user, target_filename):
     filename = "/media2/others/audio/Soundgasm/{}/{}.m4a".format(current_user, filename)
     if not os.path.exists(filename) or os.path.getsize(filename) == 0:
         with session.get(audio_url, stream=True) as request:
-            with open(filename + ".wip", 'wb') as f:
+            with open(filename + ".wip", "wb") as f:
                 shutil.copyfileobj(request.raw, f)
         os.rename(filename + ".wip", filename)
     else:
@@ -84,10 +83,16 @@ def extract_audio_from_page_url(audio_page_url):
         if audio_page_url in cache.readlines():
             return
     if not is_soundgasm_audio_page_url(audio_page_url):
-        raise Exception("{}".format("url not treated: {}".format(audio_page_url)).ljust(120, ' ')[0:120])
+        raise Exception(
+            "{}".format("url not treated: {}".format(audio_page_url)).ljust(120, " ")[
+                0:120
+            ]
+        )
     user = extract_user_from_soundgasm_audio_page_url(audio_page_url)
     filename = extract_filename_from_soundgasm_audio_page_url(audio_page_url)
-    audio_file_url = extract_audio_file_url_from_soundgasm_audio_page_url(audio_page_url)
+    audio_file_url = extract_audio_file_url_from_soundgasm_audio_page_url(
+        audio_page_url
+    )
     if audio_file_url:
         extract_audio_from_url(audio_file_url, user, filename)
         with open("/media2/others/audio/Soundgasm/cache", "a+") as cache:
@@ -97,7 +102,7 @@ def extract_audio_from_page_url(audio_page_url):
 def extract_all_public_audio_from_soundgasm_user(user_page_url: str):
     with session.get(user_page_url) as request:
         soup = BeautifulSoup(request.content, "html.parser")
-    user_page_all_links = soup.find_all('a')
+    user_page_all_links = soup.find_all("a")
     for user_page_current_link in tqdm(user_page_all_links, desc="files"):
         user_page_current_link_value = user_page_current_link.get("href")
         if is_soundgasm_audio_page_url(user_page_current_link_value):
