@@ -5,6 +5,10 @@ import shutil
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
+OUTPUT_DIR = os.environ.get(
+    "SOUNDGASM_OUTPUT_DIR", os.path.expanduser("~/audio/Soundgasm")
+)
+
 session = None
 
 
@@ -48,11 +52,11 @@ def extract_audio_file_url_from_soundgasm_audio_page_url(audio_page_url):
 
 
 def extract_audio_from_url(audio_url, current_user, target_filename):
-    os.makedirs("/media2/others/audio/Soundgasm/{}".format(current_user), exist_ok=True)
+    os.makedirs(os.path.join(OUTPUT_DIR, current_user), exist_ok=True)
     filename = target_filename.replace("/", "-")
     if len(filename) > 240:
         filename = filename[0:240] + "..."
-    filename = "/media2/others/audio/Soundgasm/{}/{}.m4a".format(current_user, filename)
+    filename = os.path.join(OUTPUT_DIR, current_user, filename + ".m4a")
     if not os.path.exists(filename) or os.path.getsize(filename) == 0:
         with session.get(audio_url, stream=True) as request:
             with open(filename + ".wip", "wb") as f:
@@ -79,14 +83,15 @@ users = [
 
 
 def extract_audio_from_page_url(audio_page_url):
-    with open("/media2/others/audio/Soundgasm/cache", "a+") as cache:
+    cache_path = os.path.join(OUTPUT_DIR, "cache")
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    with open(cache_path, "a+") as cache:
+        cache.seek(0)
         if audio_page_url in cache.readlines():
             return
     if not is_soundgasm_audio_page_url(audio_page_url):
         raise Exception(
-            "{}".format("url not treated: {}".format(audio_page_url)).ljust(120, " ")[
-                0:120
-            ]
+            "{}".format(f"url not treated: {audio_page_url}").ljust(120, " ")[0:120]
         )
     user = extract_user_from_soundgasm_audio_page_url(audio_page_url)
     filename = extract_filename_from_soundgasm_audio_page_url(audio_page_url)
@@ -95,7 +100,7 @@ def extract_audio_from_page_url(audio_page_url):
     )
     if audio_file_url:
         extract_audio_from_url(audio_file_url, user, filename)
-        with open("/media2/others/audio/Soundgasm/cache", "a+") as cache:
+        with open(cache_path, "a+") as cache:
             cache.write(audio_page_url + "\n")
 
 
