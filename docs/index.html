@@ -3,29 +3,44 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>soundgasm Scraper – Chirag Singhal</title>
+    <title>Sound Scraper</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
     <header class="glass">
-        <h1>soundgasm Scraper</h1>
-        <p>Download audio from soundgasm.net with a single command.</p>
-        <a class="cta" href="https://github.com/chirag127/soundgasm" target="_blank">View on GitHub</a>
-        <a class="cta" href="https://chirag127.github.io/soundgasm" target="_blank">Live Demo</a>
+        <h1>Sound Scraper</h1>
+        <p>Download audio from Soundgasm and Reddit (r/gonewildaudio) using Python, PRAW, and BeautifulSoup.</p>
+        <a class="cta" href="https://github.com/chirag127/sound-scraper" target="_blank">View on GitHub</a>
     </header>
 
     <section class="features glass">
-        <h2>Key Features</h2>
+        <h2>Scripts</h2>
         <ul>
-            <li>Simple CLI – just provide the episode URL.</li>
-            <li>Fast download using streaming.</li>
-            <li>No heavy dependencies – only <code>requests</code> &amp; <code>beautifulsoup4</code>.</li>
-            <li>Cross‑platform support.</li>
+            <li><code>soundgasm.py</code> — Download audio from soundgasm.net user pages or individual URLs</li>
+            <li><code>redditGWA.py</code> — Scrape Reddit subreddit posts, extract Soundgasm links, download audio</li>
+            <li><code>4chan_scraper.py</code> — List 4chan boards and threads</li>
+        </ul>
+    </section>
+
+    <section class="features glass">
+        <h2>Quick Start</h2>
+        <pre>pip install -r requirements.txt
+cp praw.ini.example praw.ini
+# Edit praw.ini with Reddit API credentials
+python soundgasm.py
+python redditGWA.py</pre>
+    </section>
+
+    <section class="features glass">
+        <h2>Configuration</h2>
+        <ul>
+            <li><code>SOUNDGASM_OUTPUT_DIR</code> — output directory (default: <code>~/audio/Soundgasm</code>)</li>
+            <li><code>praw.ini</code> — Reddit API credentials (client_id, client_secret)</li>
         </ul>
     </section>
 
     <footer class="footer glass">
-        <p>© 2026 Chirag Singhal</p>
+        <p>&copy; 2026 Chirag Singhal &mdash; MIT License</p>
         <p>
             <a href="https://github.com/chirag127" target="_blank">GitHub</a> |
             <a href="https://buymeacoffee.com/WhyIsWhen" target="_blank">Buy Me A Coffee</a>
