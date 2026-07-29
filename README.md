@@ -1,6 +1,8 @@
 # Sound Scraper
 
-[![GitHub stars](https://img.shields.io/github/stars/chirag127/sound-scraper?style=flat-square)](https://github.com/chirag127/sound-scraper)
+**Live:** https://sound-scraper.oriz.in
+
+[![GitHub stars](https://img.shields.io/github/stars/chirag127/sound-scraper?style=flat-square)](https://github.com/chirag127/sound-scraper/stargazers)
 [![License](https://img.shields.io/github/license/chirag127/sound-scraper?style=flat-square)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.10+-blue?style=flat-square)](https://python.org)
 
