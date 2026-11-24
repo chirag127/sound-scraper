@@ -87,7 +87,7 @@ def extract_audio_from_page_url(audio_page_url):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     with open(cache_path, "a+") as cache:
         cache.seek(0)
-        if audio_page_url in cache.readlines():
+        if any(audio_page_url == line.rstrip("\r\n") for line in cache):
             return
     if not is_soundgasm_audio_page_url(audio_page_url):
         raise Exception(
